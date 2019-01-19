@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import BookList from './BookList';
+import { Grid, IconButton, TextField } from '@material-ui/core';
+import BackIcon from '@material-ui/icons/ArrowBack';
 import * as BooksAPI from '../api/BooksAPI';
 import PropTypes from 'prop-types';
 
@@ -66,25 +68,30 @@ class SearchBooks extends Component {
 
     render() {
         return (
-            <div className="search-books">
+            <Grid item xs={12}>
                 <div className="search-books-bar">
-                    <Link to='/' className="close-search">Close</Link>
-                    <div className="search-books-input-wrapper">
-                        <input 
-                            type="text" 
-                            placeholder="Search by title or author"
-                            value={this.state.query}
-                            onChange={event => this.onQueryChange(event.target.value)} 
-                        />
-                    </div>
-                </div>
-                <div className="search-books-results">
-                    <BookList 
-                        books={this.state.books} 
-                        onChangeShelf={this.onChangeShelf} 
+                    <IconButton 
+                        aria-label="Close"
+                        component={Link}
+                        to='/'
+                    >
+                        <BackIcon />
+                    </IconButton>
+                    <TextField
+                        type="text"
+                        className='search-books-bar-input'
+                        placeholder="Search by title or author"
+                        value={this.state.query}
+                        onChange={event => this.onQueryChange(event.target.value)}
                     />
                 </div>
-            </div>
+                <div style={{ marginTop: '40px' }}>
+                    <BookList
+                        books={this.state.books}
+                        onChangeShelf={this.onChangeShelf}
+                    />
+                </div>
+            </Grid>
         )
     }
 

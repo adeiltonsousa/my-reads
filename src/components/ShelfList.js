@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BookShelf from './BookShelf';
 import { Link } from 'react-router-dom';
+import { Grid, AppBar, Toolbar, Typography, Fab } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import PropTypes from 'prop-types';
 
 class ShelfList extends Component {
@@ -13,33 +15,39 @@ class ShelfList extends Component {
         let readBooks = myBooks.filter(book => book.shelf === 'read')
 
         return (
-            <div className="list-books">
-                <div className="list-books-title">
-                    <h1>MyReads</h1>
-                </div>
-                <div className="list-books-content">
-                    <div>
-                        <BookShelf 
-                            shelfName='Currently Reading' 
-                            shelfBooks={readingBooks} 
-                            onChangeShelf={this.props.onChangeShelf}
-                        />
-                        <BookShelf 
-                            shelfName='Want to Read' 
-                            shelfBooks={wnatToReadBooks} 
-                            onChangeShelf={this.props.onChangeShelf}
-                        />
-                        <BookShelf 
-                            shelfName='Read' 
-                            shelfBooks={readBooks} 
-                            onChangeShelf={this.props.onChangeShelf}
-                        />
-                    </div>
-                </div>
-                <div className="open-search">
-                    <Link to='/search'>Add a book</Link>
-                </div>
-            </div>
+            <Grid item xs={12}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h4" color="inherit">
+                            MyReads
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <BookShelf
+                    shelfName='Currently Reading'
+                    shelfBooks={readingBooks}
+                    onChangeShelf={this.props.onChangeShelf}
+                />
+                <BookShelf
+                    shelfName='Want to Read'
+                    shelfBooks={wnatToReadBooks}
+                    onChangeShelf={this.props.onChangeShelf}
+                />
+                <BookShelf
+                    shelfName='Read'
+                    shelfBooks={readBooks}
+                    onChangeShelf={this.props.onChangeShelf}
+                />
+                <Fab 
+                    color="primary" 
+                    className='open-search'
+                    aria-label="Add"
+                    component={Link}
+                    to='/search'
+                >
+                    <AddIcon />
+                </Fab>
+           </Grid>
         )
     }
 

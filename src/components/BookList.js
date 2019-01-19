@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types'
 
 class BookList extends Component {
 
     render() {
         return (
-            <ol className="books-grid">
+            <Grid item xs={12} className='books-grid'>
                 {this.props.books.map(book => (
-                    <li key={book.id}>
+                    <div key={book.id}>
                         <div className="book">
                             <div className="book-top">
                                 <div 
@@ -34,9 +35,9 @@ class BookList extends Component {
                             <div className="book-title">{book.title}</div>
                             <div className="book-authors">{book.authors ? book.authors.join(', ') : ''}</div>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ol>
+            </Grid>
         )
     }
 
