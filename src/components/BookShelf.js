@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BookList from './BookList';
 import { Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-class BookShelf extends Component {
-
-    render() {
-        return (
-            <Grid item xs={12}>
-                <Typography 
-                    variant="h5" 
-                    color="inherit"
-                    className='bookshelf-title'
-                >
-                    {this.props.shelfName}
-                </Typography>
-                <BookList
-                    books={this.props.shelfBooks}
-                    onChangeShelf={this.props.onChangeShelf}
-                />
-            </Grid>
-        )
-    }
-
+function BookShelf(props) {
+    return (
+        <Grid item xs={12}>
+            <Typography
+                variant="h5"
+                color="inherit"
+                className='bookshelf-title'
+            >
+                {props.shelfName}
+            </Typography>
+            <BookList
+                books={props.shelfBooks}
+                onChangeShelf={props.onChangeShelf}
+            />
+        </Grid>
+    )
 }
 
 BookShelf.propTypes = {

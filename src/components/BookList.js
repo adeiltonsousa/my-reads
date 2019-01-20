@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types'
+import BookDetail from './BookDetails';
 
 class BookList extends Component {
+
+    state = {
+        selectedBook: null
+    }
+
+    setSelectedBook = (book) => {
+        this.setState({ selectedBook: book })
+    }
 
     render() {
         return (
@@ -11,16 +20,17 @@ class BookList extends Component {
                     <div key={book.id}>
                         <div className="book">
                             <div className="book-top">
-                                <div 
-                                    className="book-cover" 
-                                    style={{ 
-                                        width: 128, 
-                                        height: 193, 
-                                        backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : ''}")` 
+                                <div
+                                    onClick={_ => this.setSelectedBook(book)}
+                                    className="book-cover"
+                                    style={{
+                                        width: 128,
+                                        height: 193,
+                                        backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : ''}")`
                                     }}
                                 ></div>
                                 <div className="book-shelf-changer">
-                                    <select 
+                                    <select
                                         value={book.shelf}
                                         onChange={event => this.props.onChangeShelf(book, event.target.value)}
                                     >
@@ -37,6 +47,10 @@ class BookList extends Component {
                         </div>
                     </div>
                 ))}
+                <BookDetail 
+                    book={this.state.selectedBook} 
+                    onClose={_ => this.setSelectedBook(null)}
+                />
             </Grid>
         )
     }
