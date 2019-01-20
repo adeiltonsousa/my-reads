@@ -10,7 +10,7 @@ Para rodar a aplicação os seguintes passos são necessários:
 git clone https://github.com/marcosharbs/my-reads.git
 cd my-reads
 npm install
-nom start
+npm start
 ```
 
 ### Screenshots
