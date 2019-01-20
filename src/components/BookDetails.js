@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dialog, DialogTitle, Grid } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
+import PropTypes from 'prop-types';
 
 function BookDetail(props) {
     return (
@@ -9,7 +10,7 @@ function BookDetail(props) {
             onClose={props.onClose}
             aria-labelledby="book-dialog"
         >
-            {props.book && (
+            {props.book ? (
                 <Grid item xs={12}>
                     <DialogTitle id="book-dialog">{props.book.title}</DialogTitle>
                     <div style={{ paddingLeft: '15px', paddingRight: '15px' }}>
@@ -23,7 +24,8 @@ function BookDetail(props) {
                         {props.book.averageRating && (
                             <div style={{ marginTop: '10px' }}>
                                 {Array.from({length: 5}, (x, i) => i).map((e, i) => (
-                                    <StarIcon 
+                                    <StarIcon
+                                        key={i} 
                                         style={{ color: i < props.book.averageRating ? '#ffcc00' : '#f0f0f5' }} 
                                     />
                                 ))}
@@ -49,9 +51,14 @@ function BookDetail(props) {
                         )}
                     </div>
                 </Grid>
-            )}
+            ) : (<div/>)}
         </Dialog>
     )
+}
+
+BookDetail.propTypes = {
+    book: PropTypes.object,
+    onClose: PropTypes.func.isRequired
 }
 
 export default BookDetail

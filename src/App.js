@@ -19,7 +19,7 @@ class MyReadApp extends Component {
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
     .then(_ => this.setState((prevState) => {
-      let bookInMyShelf = prevState.myBooks.filter(myBook => myBook.id === book.id).length > 0;
+      let bookInMyShelf = prevState.myBooks.find(myBook => myBook.id === book.id);
       if(bookInMyShelf) {
         return {
           myBooks: prevState.myBooks.map(prevBook => {

@@ -5,25 +5,26 @@ import { Grid, IconButton, TextField } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/ArrowBack';
 import * as BooksAPI from '../api/BooksAPI';
 import PropTypes from 'prop-types';
+import { debounce } from "throttle-debounce";
 
 class SearchBooks extends Component {
 
-    state = {
-        query: '',
-        books: []
+    constructor(props) {
+        super(props)
+        this.state = {
+            query: '',
+            books: []
+        }
+        this.searchDebounced = debounce(500, this.getBooks);
     }
 
     onQueryChange = (query) => {
-        this.setState({ query })
-        if(this.timeout) {
-            clearTimeout(this.timeout)
-        }
-        this.timeout = setTimeout(this.getBooks, 300);
+        this.setState({ query }, _ => {
+            this.searchDebounced(this.state.query);
+        })
     }
 
-    getBooks = () => {
-        let { query } = this.state
-
+    getBooks = (query) => {
         if(query.length > 0) {
             BooksAPI.search(query)
             .then(books => {
