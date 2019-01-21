@@ -11,9 +11,9 @@ class MyReadApp extends Component {
     myBooks: []
   }
 
-  componentDidMount() {
-    BooksAPI.getAll()
-    .then(myBooks => this.setState({ myBooks }))
+  async componentDidMount() {
+    const myBooks = await BooksAPI.getAll()
+    this.setState({ myBooks })
   }
 
   changeShelf = (book, shelf) => {

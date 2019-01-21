@@ -9,22 +9,18 @@ import { debounce } from "throttle-debounce";
 
 class SearchBooks extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            query: '',
-            books: []
-        }
-        this.searchDebounced = debounce(500, this.getBooks);
+    state = {
+        query: '',
+        books: []
     }
 
     onQueryChange = (query) => {
         this.setState({ query }, _ => {
-            this.searchDebounced(this.state.query);
+            this.getBooks(this.state.query);
         })
     }
 
-    getBooks = (query) => {
+    getBooks = debounce(500, (query) => {
         if(query.length > 0) {
             BooksAPI.search(query)
             .then(books => {
@@ -44,7 +40,7 @@ class SearchBooks extends Component {
         } else {
             this.setState({ books: [] })
         }
-    }
+    })
 
     getShelf = (book) => {
         let filter = this.props.myBooks.filter(myBook => myBook.id === book.id)
