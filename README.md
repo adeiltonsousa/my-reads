@@ -15,9 +15,6 @@ npm start
 
 ### Screenshots
 
-Shelf|Book Details
------|------------
-<img src="https://raw.githubusercontent.com/marcosharbs/my-reads/master/imgs/img-1.png" width="300px">|<img src="https://raw.githubusercontent.com/marcosharbs/my-reads/master/imgs/img-2.png" width="300px">
-Search|
-------|
-<img src="https://raw.githubusercontent.com/marcosharbs/my-reads/master/imgs/img-3.png" width="300px">|
+Shelf|Book Details|Search
+-----|------------|------
+<img src="https://raw.githubusercontent.com/marcosharbs/my-reads/master/imgs/img-1.png" width="300px">|<img src="https://raw.githubusercontent.com/marcosharbs/my-reads/master/imgs/img-2.png" width="300px">|<img src="https://raw.githubusercontent.com/marcosharbs/my-reads/master/imgs/img-3.png" width="300px">
